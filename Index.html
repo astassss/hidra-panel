@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H.I.D.R.A Intelligence Terminal</title>
+
+<style>
+
+body{
+margin:0;
+background:#07030d;
+font-family:monospace;
+color:#b84dff;
+overflow:hidden;
+}
+
+/* GRID BACKGROUND */
+
+body::before{
+content:"";
+position:fixed;
+width:100%;
+height:100%;
+background-image:
+linear-gradient(rgba(184,77,255,0.07) 1px, transparent 1px),
+linear-gradient(90deg, rgba(184,77,255,0.07) 1px, transparent 1px);
+background-size:40px 40px;
+z-index:-1;
+}
+
+/* HEADER */
+
+.header{
+padding:15px;
+border-bottom:1px solid #b84dff;
+color:#b84dff;
+text-shadow:0 0 10px #b84dff;
+letter-spacing:2px;
+font-size:18px;
+}
+
+/* TERMINAL */
+
+.terminal{
+height:calc(100vh - 60px);
+padding:20px;
+overflow-y:auto;
+font-size:14px;
+}
+
+.terminal div{
+margin:2px 0;
+text-shadow:0 0 6px #b84dff;
+}
+
+/* CURSOR */
+
+.cursor{
+display:inline-block;
+width:10px;
+background:#b84dff;
+margin-left:5px;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+0%{opacity:1;}
+50%{opacity:0;}
+100%{opacity:1;}
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+width:6px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#b84dff;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+H.I.D.R.A INTELLIGENCE NETWORK
+</div>
+
+<div id="terminal" class="terminal"></div>
+
+<script>
+
+const terminal = document.getElementById("terminal");
+
+const lines = [
+
+"> Initializing H.I.D.R.A intelligence terminal...",
+"> Establishing encrypted global network...",
+"> Accessing underground surveillance systems...",
+"> Scanning corporate databases...",
+"",
+"> TARGET ORGANIZATION DETECTED",
+"> CYBER LIFE PHARMACEUTICALS",
+"",
+"> Status: UNDER INVESTIGATION",
+"",
+"> Cyber Life suspected of conducting illegal bioengineering experiments",
+"> Multiple classified laboratories identified worldwide",
+"",
+"> H.I.D.R.A objective:",
+"> Locate experimental bio-programs and retrieve research data",
+"",
+"> ------------------------------------------",
+"> SCANNING CYBER LIFE DATABASES",
+"> ------------------------------------------",
+"",
+"> Accessing experimental registry...",
+"",
+"> Experiment CL-01: JOHN CARTER",
+"> Status: Missing",
+"> Notes: Subject exposed to regenerative serum",
+"",
+"> Experiment CL-02: EMILY JOHNSON",
+"> Status: Unknown location",
+"> Notes: Neural enhancement prototype",
+"",
+"> Experiment CL-03: MICHAEL THOMPSON",
+"> Status: Classified",
+"> Notes: Muscular augmentation program",
+"",
+"> Experiment CL-04: SARAH MILLER",
+"> Status: Containment unstable",
+"> Notes: Accelerated cellular regeneration",
+"",
+"> Experiment CL-05: DAVID ANDERSON",
+"> Status: Active subject",
+"> Notes: Immune system hyper-adaptation",
+"",
+"> Experiment CL-06: JESSICA WILLIAMS",
+"> Status: Missing",
+"> Notes: Cognitive amplification trial",
+"",
+"> Experiment CL-07: ROBERT TAYLOR",
+"> Status: Unknown",
+"> Notes: Bio-mechanical integration test",
+"",
+"> Experiment CL-08: DANIEL WALKER",
+"> Status: Classified",
+"> Notes: Experimental viral resistance",
+"",
+"> Experiment CL-09: OLIVIA HARRIS",
+"> Status: Under observation",
+"> Notes: Genetic mutation anomaly",
+"",
+"> Experiment CL-10: ETHAN CLARK",
+"> Status: Escaped containment",
+"> Notes: Enhanced reflex experiment",
+"",
+"> ------------------------------------------",
+"> HIGH PRIORITY TARGET",
+"> ------------------------------------------",
+"",
+"> Experiment CL-11: ALBERT WESKER",
+"> Status: PRIORITY TARGET",
+"> Notes: Subject believed to possess extreme biological adaptation",
+"",
+"> ------------------------------------------",
+"> H.I.D.R.A GLOBAL SEARCH PROTOCOL",
+"> ------------------------------------------",
+"",
+"> Deploying intelligence agents...",
+"> Tracking Cyber Life research facilities...",
+"> Monitoring encrypted communications...",
+"",
+"> Satellite surveillance active",
+"> Dark web activity monitored",
+"",
+"> Searching for experiment locations...",
+"",
+"> Potential locations detected:",
+"",
+"> Zurich underground laboratory",
+"> Arctic research bunker",
+"> Abandoned biotech complex - Eastern Europe",
+"",
+"> ALERT:",
+"> Cyber Life counter-intelligence detected",
+"",
+"> Attempting to hide experimental records...",
+"",
+"> Initiating forced decryption...",
+"",
+"> Decryption progress: 12%",
+"> Decryption progress: 29%",
+"> Decryption progress: 46%",
+"> Decryption progress: 67%",
+"> Decryption progress: 89%",
+"> Decryption complete",
+"",
+"> Additional classified experiment discovered",
+"",
+"> Experiment CL-X: UNKNOWN SUBJECT",
+"> Status: Location hidden",
+"",
+"> H.I.D.R.A directive:",
+"> Capture all Cyber Life experimental subjects",
+"",
+"> PRIORITY TARGET:",
+"> ALBERT WESKER",
+"",
+"> Deploy retrieval team immediately",
+"",
+"> WARNING:",
+"> Cyber Life security network attempting trace",
+"",
+"> Masking location...",
+"",
+"> Disconnecting from intercepted servers...",
+"",
+"> H.I.D.R.A intelligence session terminated"
+
+];
+
+let index = 0;
+
+function typeLine(){
+
+if(index < lines.length){
+
+const p = document.createElement("div");
+p.textContent = lines[index];
+
+terminal.appendChild(p);
+
+terminal.scrollTop = terminal.scrollHeight;
+
+index++;
+
+setTimeout(typeLine,350);
+
+}
+
+}
+
+typeLine();
+
+</script>
+
+</body>
+</html>

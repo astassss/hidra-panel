@@ -15,8 +15,8 @@ margin:0;
 background:#05010a;
 color:#c66bff;
 font-family:monospace;
-text-align:center;
 overflow:hidden;
+text-align:center;
 }
 
 /* GRID BACKGROUND */
@@ -36,6 +36,7 @@ z-index:-1;
 /* HYDRA LOGO */
 
 .logo{
+
 width:220px;
 margin-top:40px;
 
@@ -53,32 +54,51 @@ glitch 6s infinite;
 /* ROTATION */
 
 @keyframes rotate{
-from{transform:rotate(0deg);}
-to{transform:rotate(360deg);}
+
+from{
+transform:rotate(0deg);
 }
 
-/* PULSE */
+to{
+transform:rotate(360deg);
+}
+
+}
+
+/* GLOW PULSE */
 
 @keyframes pulse{
-0%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 15px #a64dff);}
-50%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 40px #a64dff);}
-100%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 15px #a64dff);}
+
+0%{
+filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 15px #a64dff);
+}
+
+50%{
+filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 40px #a64dff);
+}
+
+100%{
+filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 15px #a64dff);
+}
+
 }
 
 /* GLITCH */
 
 @keyframes glitch{
-0%{transform:translate(0);}
-2%{transform:translate(2px,-2px);}
-4%{transform:translate(-2px,2px);}
-6%{transform:translate(0);}
-100%{transform:translate(0);}
+
+0%{transform:translate(0)}
+2%{transform:translate(2px,-2px)}
+4%{transform:translate(-2px,2px)}
+6%{transform:translate(0)}
+100%{transform:translate(0)}
+
 }
 
 /* HEADER */
 
 .header{
-margin-top:20px;
+margin-top:15px;
 font-size:22px;
 letter-spacing:4px;
 text-shadow:0 0 10px #b84dff;
@@ -87,49 +107,74 @@ text-shadow:0 0 10px #b84dff;
 /* TERMINAL */
 
 #terminal{
+
 width:90%;
 max-width:900px;
 height:45vh;
 margin:30px auto;
+
 text-align:left;
+
 border:1px solid #a64dff;
+
 padding:20px;
+
 overflow:auto;
+
 box-shadow:0 0 20px #6a00ff;
+
 }
 
 /* COMMAND BAR */
 
 .command{
+
 position:fixed;
 bottom:0;
 width:100%;
+
 background:#05010a;
+
 border-top:1px solid #a64dff;
+
 padding:10px;
+
 }
 
 input{
+
 width:90%;
+
 background:none;
+
 border:none;
+
 color:#c66bff;
+
 font-family:monospace;
+
 font-size:16px;
+
 outline:none;
+
 }
 
 /* ALERT */
 
 .alert{
+
 color:#ff5cff;
+
 animation:blink 1s infinite;
+
 }
 
 @keyframes blink{
-0%{opacity:1;}
-50%{opacity:0.3;}
-100%{opacity:1;}
+
+0%{opacity:1}
+50%{opacity:0.3}
+100%{opacity:1}
+
 }
 
 </style>
@@ -210,23 +255,33 @@ const value = cmd.value.toLowerCase()
 terminal.innerHTML += "\n\n> "+value+"\n"
 
 if(value==="scan"){
+
 terminal.innerHTML += "Scanning Cyber Life network...\nFacility detected: Boston Biotech Laboratory"
+
 }
 
 else if(value==="locate wesker"){
+
 terminal.innerHTML += "<span class='alert'>ALERT: Albert Wesker signal detected</span>\nLocation: Unknown\nH.I.D.R.A agents deployed"
+
 }
 
 else if(value==="search cyberlife"){
+
 terminal.innerHTML += "Cyber Life laboratories:\n- Boston\n- Zurich\n- Tokyo"
+
 }
 
 else if(value==="hydra"){
+
 terminal.innerHTML += "HAIL HYDRA"
+
 }
 
 else{
+
 terminal.innerHTML += "Unknown command"
+
 }
 
 terminal.scrollTop = terminal.scrollHeight

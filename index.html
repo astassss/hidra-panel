@@ -19,7 +19,7 @@ text-align:center;
 overflow:hidden;
 }
 
-/* GRID */
+/* GRID BACKGROUND */
 
 body::before{
 content:"";
@@ -51,55 +51,36 @@ animation:pulse 4s infinite;
 /* EYES */
 
 .eye{
-
 position:absolute;
-
 width:10px;
 height:10px;
-
 background:#ff4dff;
-
 border-radius:50%;
-
 box-shadow:0 0 10px #ff4dff;
-
 animation:blink 2s infinite;
-
 }
 
 .eye1{left:49%;top:110px;}
 .eye2{left:52%;top:110px;}
 
 @keyframes blink{
-
 0%{opacity:1}
 50%{opacity:0.2}
 100%{opacity:1}
-
 }
 
 /* TENTACLES */
 
 .tentacle{
-
 position:absolute;
-
 width:6px;
-
 height:120px;
-
 background:linear-gradient(#a64dff,#5e00ff);
-
 left:50%;
-
 top:90px;
-
 transform-origin:top;
-
 border-radius:10px;
-
 animation:wave 6s infinite;
-
 }
 
 .t1{transform:rotate(0deg)}
@@ -112,178 +93,112 @@ animation:wave 6s infinite;
 .t8{transform:rotate(315deg)}
 
 @keyframes wave{
-
 0%{transform:rotate(0deg)}
 50%{transform:rotate(10deg)}
 100%{transform:rotate(0deg)}
-
 }
 
 /* RADAR */
 
 .radar{
-
 position:fixed;
-
 right:30px;
-
 top:30px;
-
 width:150px;
 height:150px;
-
 border:2px solid #a64dff;
-
 border-radius:50%;
-
 box-shadow:0 0 15px #a64dff;
-
 }
 
 .radar::after{
-
 content:"";
-
 position:absolute;
-
 width:2px;
 height:75px;
-
 background:#c66bff;
-
 left:50%;
 top:50%;
-
 transform-origin:bottom;
-
 animation:scan 3s linear infinite;
-
 }
 
 @keyframes scan{
-
 from{transform:rotate(0deg)}
 to{transform:rotate(360deg)}
-
 }
 
 /* MAP */
 
 .map{
-
 position:fixed;
-
 left:20px;
-
 bottom:20px;
-
 width:200px;
-
 opacity:0.6;
-
 filter:drop-shadow(0 0 10px #a64dff);
-
 }
 
 .dot{
-
 position:fixed;
-
 left:95px;
-
 bottom:75px;
-
 width:8px;
 height:8px;
-
 background:red;
-
 border-radius:50%;
-
 box-shadow:0 0 10px red;
-
 animation:pulseDot 1s infinite;
-
 }
 
 @keyframes pulseDot{
-
 0%{transform:scale(1)}
 50%{transform:scale(1.5)}
 100%{transform:scale(1)}
-
 }
 
 /* HEADER */
 
 .header{
-
 margin-top:10px;
-
 font-size:22px;
-
 letter-spacing:4px;
-
 text-shadow:0 0 10px #b84dff;
-
 }
 
 /* TERMINAL */
 
 #terminal{
-
 width:90%;
 max-width:900px;
 height:40vh;
-
 margin:20px auto;
-
 border:1px solid #a64dff;
-
 padding:20px;
-
 overflow:auto;
-
 text-align:left;
-
 box-shadow:0 0 20px #6a00ff;
-
 }
 
 /* COMMAND BAR */
 
 .command{
-
 position:fixed;
-
 bottom:0;
-
 width:100%;
-
 background:#05010a;
-
 border-top:1px solid #a64dff;
-
 padding:10px;
-
 }
 
 input{
-
 width:90%;
-
 background:none;
-
 border:none;
-
 color:#c66bff;
-
 font-family:monospace;
-
 font-size:16px;
-
 outline:none;
-
 }
 
 </style>
@@ -324,86 +239,85 @@ H.I.D.R.A GLOBAL INTELLIGENCE
 
 <script>
 
-const terminal=document.getElementById("terminal")
+const terminal = document.getElementById("terminal")
 
-const intro=`
-> Booting H.I.D.R.A Network...
+const intro = [
+"> Booting H.I.D.R.A Network...",
+"> Searching target organization...",
+"",
+"CYBER LIFE PHARMACEUTICALS DETECTED",
+"",
+"> Primary Laboratory:",
+"Boston Biotech Facility",
+"",
+"> Experiments located...",
+"",
+"CL-01 John Carter",
+"CL-02 Emily Johnson",
+"CL-03 Michael Thompson",
+"CL-04 Sarah Miller",
+"CL-05 David Anderson",
+"",
+">>> PRIORITY TARGET <<<",
+"",
+"ALBERT WESKER",
+"",
+"> Awaiting command..."
+]
 
-> Searching target organization...
+let i = 0
 
-CYBER LIFE PHARMACEUTICALS DETECTED
+function typeLine(){
 
-> Primary Laboratory:
-Boston Biotech Facility
+if(i < intro.length){
 
-> Experiments located...
-
-CL-01 John Carter
-CL-02 Emily Johnson
-CL-03 Michael Thompson
-CL-04 Sarah Miller
-CL-05 David Anderson
-
->>> PRIORITY TARGET <<<
-
-ALBERT WESKER
-
-> Awaiting command
-`
-
-let i=0
-
-function type(){
-
-if(i<intro.length){
-
-terminal.innerHTML+=intro.charAt(i)
+terminal.innerHTML += intro[i] + "<br>"
 
 i++
 
-setTimeout(type,20)
+setTimeout(typeLine, 300)
 
 }
 
 }
 
-type()
+typeLine()
 
-const cmd=document.getElementById("cmd")
+const cmd = document.getElementById("cmd")
 
 cmd.addEventListener("keydown",function(e){
 
-if(e.key==="Enter"){
+if(e.key === "Enter"){
 
-const value=cmd.value.toLowerCase()
+const value = cmd.value.toLowerCase()
 
-terminal.innerHTML+="\n\n> "+value+"\n"
+terminal.innerHTML += "<br>> " + value + "<br>"
 
-if(value==="scan"){
+if(value === "scan"){
 
-terminal.innerHTML+="Scanning Cyber Life network...\nLocation confirmed: Boston"
-
-}
-
-else if(value==="locate wesker"){
-
-terminal.innerHTML+="ALERT: Wesker signal unstable\nDeploying agents"
+terminal.innerHTML += "Scanning Cyber Life network...<br>Location confirmed: Boston<br>"
 
 }
 
-else if(value==="hydra"){
+else if(value === "locate wesker"){
 
-terminal.innerHTML+="HAIL HYDRA"
+terminal.innerHTML += "ALERT: Wesker signal unstable<br>Deploying agents<br>"
+
+}
+
+else if(value === "hydra"){
+
+terminal.innerHTML += "HAIL HYDRA<br>"
 
 }
 
 else{
 
-terminal.innerHTML+="Unknown command"
+terminal.innerHTML += "Unknown command<br>"
 
 }
 
-terminal.scrollTop=terminal.scrollHeight
+terminal.scrollTop = terminal.scrollHeight
 
 cmd.value=""
 

@@ -6,13 +6,11 @@
 <title>H.I.D.R.A Intelligence Terminal</title>
 
 <style>
-
 body{
 margin:0;
 background:#07030d;
 font-family:monospace;
 color:#b84dff;
-overflow:hidden;
 }
 
 body::before{
@@ -42,20 +40,6 @@ padding:20px;
 overflow-y:auto;
 font-size:14px;
 }
-
-.terminal div{
-margin:2px 0;
-text-shadow:0 0 6px #b84dff;
-}
-
-::-webkit-scrollbar{
-width:6px;
-}
-
-::-webkit-scrollbar-thumb{
-background:#b84dff;
-}
-
 </style>
 </head>
 
@@ -74,37 +58,22 @@ const terminal = document.getElementById("terminal");
 const lines = [
 
 "> Initializing H.I.D.R.A intelligence terminal...",
-"> Establishing encrypted global network...",
-"> Accessing underground surveillance systems...",
-"> Scanning corporate databases...",
+"> Establishing encrypted network...",
+"> Searching global databases...",
 "",
 "> TARGET ORGANIZATION DETECTED",
 "> CYBER LIFE PHARMACEUTICALS",
 "",
-"> Status: UNDER INVESTIGATION",
+"> Known Research Facility:",
+"> Boston Biotech Laboratory - Massachusetts",
 "",
-"> Cyber Life suspected of conducting illegal bioengineering experiments",
-"> Multiple classified laboratories identified worldwide",
-"",
-"> Known Cyber Life research facilities:",
-"> Zurich Research Center",
-"> Boston Biotech Laboratory",
-"> Tokyo Pharmaceutical Institute",
-"",
-"> H.I.D.R.A objective:",
-"> Locate experimental bio-programs and retrieve research data",
-"",
-"> ------------------------------------------",
-"> SCANNING CYBER LIFE DATABASES",
-"> ------------------------------------------",
-"",
-"> Accessing experimental registry...",
+"> Accessing experiment database...",
 "",
 "> Experiment CL-01: JOHN CARTER",
 "> Status: Missing",
 "",
 "> Experiment CL-02: EMILY JOHNSON",
-"> Status: Unknown location",
+"> Status: Unknown",
 "",
 "> Experiment CL-03: MICHAEL THOMPSON",
 "> Status: Classified",
@@ -115,68 +84,20 @@ const lines = [
 "> Experiment CL-05: DAVID ANDERSON",
 "> Status: Active subject",
 "",
-"> Experiment CL-06: JESSICA WILLIAMS",
-"> Status: Missing",
-"",
-"> Experiment CL-07: ROBERT TAYLOR",
-"> Status: Unknown",
-"",
-"> Experiment CL-08: DANIEL WALKER",
-"> Status: Classified",
-"",
-"> Experiment CL-09: OLIVIA HARRIS",
-"> Status: Under observation",
-"",
-"> Experiment CL-10: ETHAN CLARK",
-"> Status: Escaped containment",
-"",
-"> ------------------------------------------",
 "> HIGH PRIORITY TARGET",
-"> ------------------------------------------",
 "",
 "> Experiment CL-11: ALBERT WESKER",
 "> Status: PRIORITY TARGET",
 "",
-"> ------------------------------------------",
-"> H.I.D.R.A GLOBAL SEARCH PROTOCOL",
-"> ------------------------------------------",
+"> Searching Cyber Life facilities...",
 "",
-"> Deploying intelligence agents...",
-"> Tracking Cyber Life research facilities...",
+"> Boston Biotech Laboratory detected",
 "",
-"> Searching for experiment locations...",
+"> Deploying H.I.D.R.A agents...",
 "",
-"> Potential locations detected:",
+"> Warning: Cyber Life security trace detected",
 "",
-"> Boston Biotech Laboratory - Massachusetts",
-"> Zurich Underground Laboratory - Switzerland",
-"> Arctic Research Bunker",
-"",
-"> ALERT:",
-"> Cyber Life counter-intelligence detected",
-"",
-"> Initiating forced decryption...",
-"",
-"> Decryption progress: 12%",
-"> Decryption progress: 29%",
-"> Decryption progress: 46%",
-"> Decryption progress: 67%",
-"> Decryption progress: 89%",
-"> Decryption complete",
-"",
-"> PRIORITY TARGET:",
-"> ALBERT WESKER",
-"",
-"> Deploy retrieval team immediately",
-"",
-"> WARNING:",
-"> Cyber Life security network attempting trace",
-"",
-"> Masking location...",
-"",
-"> Disconnecting from intercepted servers...",
-"",
-"> H.I.D.R.A intelligence session terminated"
+"> Disconnecting from network..."
 
 ];
 
@@ -186,10 +107,10 @@ function typeLine(){
 
 if(index < lines.length){
 
-const p = document.createElement("div");
-p.textContent = lines[index];
+const line = document.createElement("div");
+line.textContent = lines[index];
 
-terminal.appendChild(p);
+terminal.appendChild(line);
 
 terminal.scrollTop = terminal.scrollHeight;
 

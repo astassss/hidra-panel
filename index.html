@@ -1,17 +1,25 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>H.I.D.R.A Intelligence Terminal</title>
 
 <style>
+
 body{
 margin:0;
-background:#07030d;
+background:#05010a;
+color:#c66bff;
 font-family:monospace;
-color:#b84dff;
+text-align:center;
+overflow:hidden;
 }
+
+/* GRID BACKGROUND */
 
 body::before{
 content:"";
@@ -19,30 +27,118 @@ position:fixed;
 width:100%;
 height:100%;
 background-image:
-linear-gradient(rgba(184,77,255,0.07) 1px, transparent 1px),
-linear-gradient(90deg, rgba(184,77,255,0.07) 1px, transparent 1px);
+linear-gradient(rgba(190,120,255,0.06) 1px, transparent 1px),
+linear-gradient(90deg, rgba(190,120,255,0.06) 1px, transparent 1px);
 background-size:40px 40px;
 z-index:-1;
 }
 
-.header{
-padding:15px;
-border-bottom:1px solid #b84dff;
-text-shadow:0 0 10px #b84dff;
-letter-spacing:2px;
-font-size:18px;
+/* HYDRA LOGO */
+
+.logo{
+width:220px;
+margin-top:40px;
+
+filter:
+hue-rotate(260deg)
+saturate(2)
+drop-shadow(0 0 20px #a64dff);
+
+animation:
+rotate 30s linear infinite,
+pulse 4s ease-in-out infinite,
+glitch 6s infinite;
 }
 
-#terminal{
-padding:20px;
-height:calc(100vh - 60px);
-overflow:auto;
-white-space:pre-line;
+/* ROTATION */
+
+@keyframes rotate{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
 }
+
+/* PULSE */
+
+@keyframes pulse{
+0%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 15px #a64dff);}
+50%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 40px #a64dff);}
+100%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 15px #a64dff);}
+}
+
+/* GLITCH */
+
+@keyframes glitch{
+0%{transform:translate(0);}
+2%{transform:translate(2px,-2px);}
+4%{transform:translate(-2px,2px);}
+6%{transform:translate(0);}
+100%{transform:translate(0);}
+}
+
+/* HEADER */
+
+.header{
+margin-top:20px;
+font-size:22px;
+letter-spacing:4px;
+text-shadow:0 0 10px #b84dff;
+}
+
+/* TERMINAL */
+
+#terminal{
+width:90%;
+max-width:900px;
+height:45vh;
+margin:30px auto;
+text-align:left;
+border:1px solid #a64dff;
+padding:20px;
+overflow:auto;
+box-shadow:0 0 20px #6a00ff;
+}
+
+/* COMMAND BAR */
+
+.command{
+position:fixed;
+bottom:0;
+width:100%;
+background:#05010a;
+border-top:1px solid #a64dff;
+padding:10px;
+}
+
+input{
+width:90%;
+background:none;
+border:none;
+color:#c66bff;
+font-family:monospace;
+font-size:16px;
+outline:none;
+}
+
+/* ALERT */
+
+.alert{
+color:#ff5cff;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+0%{opacity:1;}
+50%{opacity:0.3;}
+100%{opacity:1;}
+}
+
 </style>
+
 </head>
 
 <body>
+
+<img src="hydra.png" class="logo">
 
 <div class="header">
 H.I.D.R.A INTELLIGENCE NETWORK
@@ -50,65 +146,98 @@ H.I.D.R.A INTELLIGENCE NETWORK
 
 <div id="terminal"></div>
 
+<div class="command">
+> <input id="cmd" placeholder="type command">
+</div>
+
 <script>
 
-const text = `
-> Initializing H.I.D.R.A intelligence terminal...
-> Establishing encrypted global network...
+const terminal = document.getElementById("terminal")
+
+const intro = `
+> Booting H.I.D.R.A network...
+> Establishing encrypted global connection...
 
 > TARGET DETECTED
-> CYBER LIFE PHARMACEUTICALS
+CYBER LIFE PHARMACEUTICALS
 
 > Known facility:
-> Boston Biotech Laboratory
+Boston Biotech Laboratory - Massachusetts
 
 > Accessing experiment database...
 
-> Experiment CL-01: JOHN CARTER
-Status: Missing
+CL-01 John Carter
+CL-02 Emily Johnson
+CL-03 Michael Thompson
+CL-04 Sarah Miller
+CL-05 David Anderson
+CL-06 Christopher Walker
+CL-07 Jessica Taylor
 
-> Experiment CL-02: EMILY JOHNSON
-Status: Unknown
+>>> PRIORITY TARGET <<<
 
-> Experiment CL-03: MICHAEL THOMPSON
-Status: Classified
+ALBERT WESKER
 
-> Experiment CL-04: SARAH MILLER
-Status: Containment unstable
+> Awaiting command...
+`
 
-> Experiment CL-05: DAVID ANDERSON
-Status: Active subject
+let i = 0
 
-> HIGH PRIORITY TARGET
+function type(){
 
-> Experiment CL-11: ALBERT WESKER
-Status: PRIORITY TARGET
+if(i < intro.length){
 
-> Searching Cyber Life facilities...
-> Boston Biotech Laboratory located
+terminal.innerHTML += intro.charAt(i)
 
-> Deploying H.I.D.R.A agents...
+i++
 
-> Warning: Cyber Life security trace detected
+setTimeout(type,20)
 
-> Disconnecting...
-`;
-
-let i = 0;
-const speed = 25;
-
-function typeWriter(){
-if(i < text.length){
-document.getElementById("terminal").innerHTML += text.charAt(i);
-i++;
-setTimeout(typeWriter, speed);
-}
 }
 
-typeWriter();
+}
+
+type()
+
+const cmd = document.getElementById("cmd")
+
+cmd.addEventListener("keydown",function(e){
+
+if(e.key==="Enter"){
+
+const value = cmd.value.toLowerCase()
+
+terminal.innerHTML += "\n\n> "+value+"\n"
+
+if(value==="scan"){
+terminal.innerHTML += "Scanning Cyber Life network...\nFacility detected: Boston Biotech Laboratory"
+}
+
+else if(value==="locate wesker"){
+terminal.innerHTML += "<span class='alert'>ALERT: Albert Wesker signal detected</span>\nLocation: Unknown\nH.I.D.R.A agents deployed"
+}
+
+else if(value==="search cyberlife"){
+terminal.innerHTML += "Cyber Life laboratories:\n- Boston\n- Zurich\n- Tokyo"
+}
+
+else if(value==="hydra"){
+terminal.innerHTML += "HAIL HYDRA"
+}
+
+else{
+terminal.innerHTML += "Unknown command"
+}
+
+terminal.scrollTop = terminal.scrollHeight
+
+cmd.value=""
+
+}
+
+})
 
 </script>
 
 </body>
 </html>
-

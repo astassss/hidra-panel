@@ -1,25 +1,21 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>H.I.D.R.A Intelligence Terminal</title>
+<title>H.I.D.R.A Terminal</title>
 
 <style>
 
 body{
 margin:0;
-background:#05010a;
+background:#07030d;
 color:#c66bff;
 font-family:monospace;
 overflow:hidden;
-text-align:center;
 }
 
-/* GRID BACKGROUND */
+/* GRID */
 
 body::before{
 content:"";
@@ -27,163 +23,69 @@ position:fixed;
 width:100%;
 height:100%;
 background-image:
-linear-gradient(rgba(190,120,255,0.06) 1px, transparent 1px),
-linear-gradient(90deg, rgba(190,120,255,0.06) 1px, transparent 1px);
+linear-gradient(rgba(198,107,255,0.08) 1px, transparent 1px),
+linear-gradient(90deg, rgba(198,107,255,0.08) 1px, transparent 1px);
 background-size:40px 40px;
 z-index:-1;
-}
-
-/* HYDRA LOGO */
-
-.logo{
-
-width:220px;
-margin-top:40px;
-
-filter:
-hue-rotate(260deg)
-saturate(2)
-drop-shadow(0 0 20px #a64dff);
-
-animation:
-rotate 30s linear infinite,
-pulse 4s ease-in-out infinite,
-glitch 6s infinite;
-}
-
-/* ROTATION */
-
-@keyframes rotate{
-
-from{
-transform:rotate(0deg);
-}
-
-to{
-transform:rotate(360deg);
-}
-
-}
-
-/* GLOW PULSE */
-
-@keyframes pulse{
-
-0%{
-filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 15px #a64dff);
-}
-
-50%{
-filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 40px #a64dff);
-}
-
-100%{
-filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 15px #a64dff);
-}
-
-}
-
-/* GLITCH */
-
-@keyframes glitch{
-
-0%{transform:translate(0)}
-2%{transform:translate(2px,-2px)}
-4%{transform:translate(-2px,2px)}
-6%{transform:translate(0)}
-100%{transform:translate(0)}
-
 }
 
 /* HEADER */
 
 .header{
-margin-top:15px;
-font-size:22px;
-letter-spacing:4px;
-text-shadow:0 0 10px #b84dff;
+padding:15px;
+border-bottom:1px solid #c66bff;
+text-shadow:0 0 10px #c66bff;
+letter-spacing:3px;
+font-size:20px;
 }
 
 /* TERMINAL */
 
 #terminal{
-
-width:90%;
-max-width:900px;
-height:45vh;
-margin:30px auto;
-
-text-align:left;
-
-border:1px solid #a64dff;
-
 padding:20px;
-
+height:80vh;
 overflow:auto;
-
-box-shadow:0 0 20px #6a00ff;
-
+white-space:pre-line;
 }
 
-/* COMMAND BAR */
+/* COMMAND LINE */
 
 .command{
-
 position:fixed;
 bottom:0;
 width:100%;
-
-background:#05010a;
-
-border-top:1px solid #a64dff;
-
 padding:10px;
-
+border-top:1px solid #c66bff;
+background:#07030d;
 }
 
 input{
-
-width:90%;
-
+width:100%;
 background:none;
-
 border:none;
-
 color:#c66bff;
-
 font-family:monospace;
-
 font-size:16px;
-
 outline:none;
-
 }
 
 /* ALERT */
 
 .alert{
-
-color:#ff5cff;
-
+color:#ff3df5;
 animation:blink 1s infinite;
-
 }
 
 @keyframes blink{
-
 0%{opacity:1}
 50%{opacity:0.3}
 100%{opacity:1}
-
 }
 
 </style>
-
 </head>
 
 <body>
-
-<img src="hydra.png" class="logo">
 
 <div class="header">
 H.I.D.R.A INTELLIGENCE NETWORK
@@ -192,7 +94,7 @@ H.I.D.R.A INTELLIGENCE NETWORK
 <div id="terminal"></div>
 
 <div class="command">
-> <input id="cmd" placeholder="type command">
+> <input id="cmd" placeholder="type command...">
 </div>
 
 <script>
@@ -200,10 +102,10 @@ H.I.D.R.A INTELLIGENCE NETWORK
 const terminal = document.getElementById("terminal")
 
 const intro = `
-> Booting H.I.D.R.A network...
+> Booting H.I.D.R.A intelligence network...
 > Establishing encrypted global connection...
 
-> TARGET DETECTED
+> Target detected:
 CYBER LIFE PHARMACEUTICALS
 
 > Known facility:
@@ -211,13 +113,11 @@ Boston Biotech Laboratory - Massachusetts
 
 > Accessing experiment database...
 
-CL-01 John Carter
-CL-02 Emily Johnson
-CL-03 Michael Thompson
-CL-04 Sarah Miller
-CL-05 David Anderson
-CL-06 Christopher Walker
-CL-07 Jessica Taylor
+Experiment CL-01: John Carter
+Experiment CL-02: Emily Johnson
+Experiment CL-03: Michael Thompson
+Experiment CL-04: Sarah Miller
+Experiment CL-05: David Anderson
 
 >>> PRIORITY TARGET <<<
 
@@ -229,17 +129,11 @@ ALBERT WESKER
 let i = 0
 
 function type(){
-
 if(i < intro.length){
-
 terminal.innerHTML += intro.charAt(i)
-
 i++
-
 setTimeout(type,20)
-
 }
-
 }
 
 type()
@@ -255,37 +149,22 @@ const value = cmd.value.toLowerCase()
 terminal.innerHTML += "\n\n> "+value+"\n"
 
 if(value==="scan"){
-
-terminal.innerHTML += "Scanning Cyber Life network...\nFacility detected: Boston Biotech Laboratory"
-
+terminal.innerHTML += "Scanning Cyber Life network...\nFacility found: Boston Biotech Laboratory"
 }
 
 else if(value==="locate wesker"){
-
 terminal.innerHTML += "<span class='alert'>ALERT: Albert Wesker signal detected</span>\nLocation: Unknown\nH.I.D.R.A agents deployed"
-
 }
 
 else if(value==="search cyberlife"){
-
 terminal.innerHTML += "Cyber Life laboratories:\n- Boston\n- Zurich\n- Tokyo"
-
-}
-
-else if(value==="hydra"){
-
-terminal.innerHTML += "HAIL HYDRA"
-
 }
 
 else{
-
 terminal.innerHTML += "Unknown command"
-
 }
 
 terminal.scrollTop = terminal.scrollHeight
-
 cmd.value=""
 
 }

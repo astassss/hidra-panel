@@ -3,19 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>H.I.D.R.A Terminal</title>
+<title>H.I.D.R.A Intelligence Terminal</title>
 
 <style>
-
 body{
 margin:0;
 background:#07030d;
-color:#c66bff;
 font-family:monospace;
-overflow:hidden;
+color:#b84dff;
 }
-
-/* GRID */
 
 body::before{
 content:"";
@@ -23,65 +19,26 @@ position:fixed;
 width:100%;
 height:100%;
 background-image:
-linear-gradient(rgba(198,107,255,0.08) 1px, transparent 1px),
-linear-gradient(90deg, rgba(198,107,255,0.08) 1px, transparent 1px);
+linear-gradient(rgba(184,77,255,0.07) 1px, transparent 1px),
+linear-gradient(90deg, rgba(184,77,255,0.07) 1px, transparent 1px);
 background-size:40px 40px;
 z-index:-1;
 }
 
-/* HEADER */
-
 .header{
 padding:15px;
-border-bottom:1px solid #c66bff;
-text-shadow:0 0 10px #c66bff;
-letter-spacing:3px;
-font-size:20px;
+border-bottom:1px solid #b84dff;
+text-shadow:0 0 10px #b84dff;
+letter-spacing:2px;
+font-size:18px;
 }
-
-/* TERMINAL */
 
 #terminal{
 padding:20px;
-height:80vh;
+height:calc(100vh - 60px);
 overflow:auto;
 white-space:pre-line;
 }
-
-/* COMMAND LINE */
-
-.command{
-position:fixed;
-bottom:0;
-width:100%;
-padding:10px;
-border-top:1px solid #c66bff;
-background:#07030d;
-}
-
-input{
-width:100%;
-background:none;
-border:none;
-color:#c66bff;
-font-family:monospace;
-font-size:16px;
-outline:none;
-}
-
-/* ALERT */
-
-.alert{
-color:#ff3df5;
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
-0%{opacity:1}
-50%{opacity:0.3}
-100%{opacity:1}
-}
-
 </style>
 </head>
 
@@ -93,83 +50,62 @@ H.I.D.R.A INTELLIGENCE NETWORK
 
 <div id="terminal"></div>
 
-<div class="command">
-> <input id="cmd" placeholder="type command...">
-</div>
-
 <script>
 
-const terminal = document.getElementById("terminal")
+const text = `
+> Initializing H.I.D.R.A intelligence terminal...
+> Establishing encrypted global network...
 
-const intro = `
-> Booting H.I.D.R.A intelligence network...
-> Establishing encrypted global connection...
-
-> Target detected:
-CYBER LIFE PHARMACEUTICALS
+> TARGET DETECTED
+> CYBER LIFE PHARMACEUTICALS
 
 > Known facility:
-Boston Biotech Laboratory - Massachusetts
+> Boston Biotech Laboratory - Massachusetts
 
 > Accessing experiment database...
 
-Experiment CL-01: John Carter
-Experiment CL-02: Emily Johnson
-Experiment CL-03: Michael Thompson
-Experiment CL-04: Sarah Miller
-Experiment CL-05: David Anderson
+> Experiment CL-01: JOHN CARTER
+Status: Missing
 
->>> PRIORITY TARGET <<<
+> Experiment CL-02: EMILY JOHNSON
+Status: Unknown
 
-ALBERT WESKER
+> Experiment CL-03: MICHAEL THOMPSON
+Status: Classified
 
-> Awaiting command...
-`
+> Experiment CL-04: SARAH MILLER
+Status: Containment unstable
 
-let i = 0
+> Experiment CL-05: DAVID ANDERSON
+Status: Active subject
 
-function type(){
-if(i < intro.length){
-terminal.innerHTML += intro.charAt(i)
-i++
-setTimeout(type,20)
+> HIGH PRIORITY TARGET
+
+> Experiment CL-11: ALBERT WESKER
+Status: PRIORITY TARGET
+
+> Searching Cyber Life facilities...
+> Boston Biotech Laboratory located
+
+> Deploying H.I.D.R.A agents...
+
+> Warning: Cyber Life security trace detected
+
+> Disconnecting...
+`;
+
+let i = 0;
+const speed = 25;
+
+function typeWriter(){
+if(i < text.length){
+document.getElementById("terminal").innerHTML += text.charAt(i);
+i++;
+setTimeout(typeWriter, speed);
 }
 }
 
-type()
-
-const cmd = document.getElementById("cmd")
-
-cmd.addEventListener("keydown",function(e){
-
-if(e.key==="Enter"){
-
-const value = cmd.value.toLowerCase()
-
-terminal.innerHTML += "\n\n> "+value+"\n"
-
-if(value==="scan"){
-terminal.innerHTML += "Scanning Cyber Life network...\nFacility found: Boston Biotech Laboratory"
-}
-
-else if(value==="locate wesker"){
-terminal.innerHTML += "<span class='alert'>ALERT: Albert Wesker signal detected</span>\nLocation: Unknown\nH.I.D.R.A agents deployed"
-}
-
-else if(value==="search cyberlife"){
-terminal.innerHTML += "Cyber Life laboratories:\n- Boston\n- Zurich\n- Tokyo"
-}
-
-else{
-terminal.innerHTML += "Unknown command"
-}
-
-terminal.scrollTop = terminal.scrollHeight
-cmd.value=""
-
-}
-
-})
+typeWriter();
 
 </script>
 

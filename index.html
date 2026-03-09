@@ -6,6 +6,7 @@
 <title>H.I.D.R.A Intelligence Terminal</title>
 
 <style>
+
 body{
 margin:0;
 background:#07030d;
@@ -28,7 +29,6 @@ z-index:-1;
 .header{
 padding:15px;
 border-bottom:1px solid #b84dff;
-color:#b84dff;
 text-shadow:0 0 10px #b84dff;
 letter-spacing:2px;
 font-size:18px;
@@ -40,6 +40,7 @@ padding:20px;
 overflow-y:auto;
 font-size:14px;
 }
+
 </style>
 </head>
 
@@ -53,21 +54,23 @@ H.I.D.R.A INTELLIGENCE NETWORK
 
 <script>
 
+document.addEventListener("DOMContentLoaded", function(){
+
 const terminal = document.getElementById("terminal");
 
 const lines = [
 
 "> Initializing H.I.D.R.A intelligence terminal...",
-"> Establishing encrypted network...",
-"> Searching global databases...",
+"> Establishing encrypted global network...",
+"> Accessing surveillance satellites...",
 "",
-"> TARGET ORGANIZATION DETECTED",
+"> TARGET DETECTED:",
 "> CYBER LIFE PHARMACEUTICALS",
 "",
-"> Known Research Facility:",
+"> Known research facility:",
 "> Boston Biotech Laboratory - Massachusetts",
 "",
-"> Accessing experiment database...",
+"> Accessing Cyber Life experiment database...",
 "",
 "> Experiment CL-01: JOHN CARTER",
 "> Status: Missing",
@@ -91,11 +94,13 @@ const lines = [
 "",
 "> Searching Cyber Life facilities...",
 "",
-"> Boston Biotech Laboratory detected",
+"> Boston Biotech Laboratory located",
 "",
 "> Deploying H.I.D.R.A agents...",
 "",
-"> Warning: Cyber Life security trace detected",
+"> Warning: Cyber Life attempting counter-trace",
+"",
+"> Masking connection...",
 "",
 "> Disconnecting from network..."
 
@@ -123,6 +128,8 @@ setTimeout(typeLine,350);
 }
 
 typeLine();
+
+});
 
 </script>
 

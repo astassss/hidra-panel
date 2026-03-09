@@ -15,8 +15,6 @@ color:#b84dff;
 overflow:hidden;
 }
 
-/* GRID BACKGROUND */
-
 body::before{
 content:"";
 position:fixed;
@@ -29,8 +27,6 @@ background-size:40px 40px;
 z-index:-1;
 }
 
-/* HEADER */
-
 .header{
 padding:15px;
 border-bottom:1px solid #b84dff;
@@ -39,8 +35,6 @@ text-shadow:0 0 10px #b84dff;
 letter-spacing:2px;
 font-size:18px;
 }
-
-/* TERMINAL */
 
 .terminal{
 height:calc(100vh - 60px);
@@ -53,24 +47,6 @@ font-size:14px;
 margin:2px 0;
 text-shadow:0 0 6px #b84dff;
 }
-
-/* CURSOR */
-
-.cursor{
-display:inline-block;
-width:10px;
-background:#b84dff;
-margin-left:5px;
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
-0%{opacity:1;}
-50%{opacity:0;}
-100%{opacity:1;}
-}
-
-/* SCROLLBAR */
 
 ::-webkit-scrollbar{
 width:6px;
@@ -110,6 +86,11 @@ const lines = [
 "> Cyber Life suspected of conducting illegal bioengineering experiments",
 "> Multiple classified laboratories identified worldwide",
 "",
+"> Known Cyber Life research facilities:",
+"> Zurich Research Center",
+"> Boston Biotech Laboratory",
+"> Tokyo Pharmaceutical Institute",
+"",
 "> H.I.D.R.A objective:",
 "> Locate experimental bio-programs and retrieve research data",
 "",
@@ -121,43 +102,33 @@ const lines = [
 "",
 "> Experiment CL-01: JOHN CARTER",
 "> Status: Missing",
-"> Notes: Subject exposed to regenerative serum",
 "",
 "> Experiment CL-02: EMILY JOHNSON",
 "> Status: Unknown location",
-"> Notes: Neural enhancement prototype",
 "",
 "> Experiment CL-03: MICHAEL THOMPSON",
 "> Status: Classified",
-"> Notes: Muscular augmentation program",
 "",
 "> Experiment CL-04: SARAH MILLER",
 "> Status: Containment unstable",
-"> Notes: Accelerated cellular regeneration",
 "",
 "> Experiment CL-05: DAVID ANDERSON",
 "> Status: Active subject",
-"> Notes: Immune system hyper-adaptation",
 "",
 "> Experiment CL-06: JESSICA WILLIAMS",
 "> Status: Missing",
-"> Notes: Cognitive amplification trial",
 "",
 "> Experiment CL-07: ROBERT TAYLOR",
 "> Status: Unknown",
-"> Notes: Bio-mechanical integration test",
 "",
 "> Experiment CL-08: DANIEL WALKER",
 "> Status: Classified",
-"> Notes: Experimental viral resistance",
 "",
 "> Experiment CL-09: OLIVIA HARRIS",
 "> Status: Under observation",
-"> Notes: Genetic mutation anomaly",
 "",
 "> Experiment CL-10: ETHAN CLARK",
 "> Status: Escaped containment",
-"> Notes: Enhanced reflex experiment",
 "",
 "> ------------------------------------------",
 "> HIGH PRIORITY TARGET",
@@ -165,7 +136,6 @@ const lines = [
 "",
 "> Experiment CL-11: ALBERT WESKER",
 "> Status: PRIORITY TARGET",
-"> Notes: Subject believed to possess extreme biological adaptation",
 "",
 "> ------------------------------------------",
 "> H.I.D.R.A GLOBAL SEARCH PROTOCOL",
@@ -173,22 +143,17 @@ const lines = [
 "",
 "> Deploying intelligence agents...",
 "> Tracking Cyber Life research facilities...",
-"> Monitoring encrypted communications...",
-"",
-"> Satellite surveillance active",
-"> Dark web activity monitored",
 "",
 "> Searching for experiment locations...",
 "",
 "> Potential locations detected:",
 "",
-"2> Boston Biotech Laboratory
-"3> Tokyo Pharmaceutical Institute",
+"> Boston Biotech Laboratory - Massachusetts",
+"> Zurich Underground Laboratory - Switzerland",
+"> Arctic Research Bunker",
 "",
 "> ALERT:",
 "> Cyber Life counter-intelligence detected",
-"",
-"> Attempting to hide experimental records...",
 "",
 "> Initiating forced decryption...",
 "",
@@ -198,14 +163,6 @@ const lines = [
 "> Decryption progress: 67%",
 "> Decryption progress: 89%",
 "> Decryption complete",
-"",
-"> Additional classified experiment discovered",
-"",
-"> Experiment CL-X: UNKNOWN SUBJECT",
-"> Status: Location hidden",
-"",
-"> H.I.D.R.A directive:",
-"> Capture all Cyber Life experimental subjects",
 "",
 "> PRIORITY TARGET:",
 "> ALBERT WESKER",

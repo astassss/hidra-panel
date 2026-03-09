@@ -19,7 +19,7 @@ text-align:center;
 overflow:hidden;
 }
 
-/* background grid */
+/* GRID BACKGROUND */
 
 body::before{
 content:"";
@@ -33,12 +33,24 @@ background-size:40px 40px;
 z-index:-1;
 }
 
-/* hydra logo */
+/* LOGO CONTAINER */
+
+.logo-container{
+position:relative;
+width:240px;
+margin:auto;
+margin-top:40px;
+}
+
+/* HYDRA LOGO */
 
 .logo{
 
 width:220px;
-margin-top:40px;
+
+position:relative;
+
+z-index:2;
 
 filter:
 hue-rotate(260deg)
@@ -46,17 +58,60 @@ saturate(2)
 drop-shadow(0 0 20px #a64dff);
 
 animation:
-rotate 35s linear infinite,
 pulse 4s ease-in-out infinite;
 
 }
 
-@keyframes rotate{
+/* TENTACLES */
 
-from{transform:rotate(0deg);}
-to{transform:rotate(360deg);}
+.tentacle{
+
+position:absolute;
+
+width:6px;
+
+height:120px;
+
+background:linear-gradient(#a64dff,#5e00ff);
+
+border-radius:10px;
+
+left:50%;
+
+top:50%;
+
+transform-origin:top;
+
+box-shadow:0 0 15px #a64dff;
+
+animation:wave 6s ease-in-out infinite;
 
 }
+
+/* CREATE 8 TENTACLES */
+
+.t1{ transform:rotate(0deg) translateY(-20px); }
+.t2{ transform:rotate(45deg) translateY(-20px); }
+.t3{ transform:rotate(90deg) translateY(-20px); }
+.t4{ transform:rotate(135deg) translateY(-20px); }
+.t5{ transform:rotate(180deg) translateY(-20px); }
+.t6{ transform:rotate(225deg) translateY(-20px); }
+.t7{ transform:rotate(270deg) translateY(-20px); }
+.t8{ transform:rotate(315deg) translateY(-20px); }
+
+/* WAVE ANIMATION */
+
+@keyframes wave{
+
+0%{ transform:rotate(var(--r)) translateY(-20px) rotate(0deg); }
+
+50%{ transform:rotate(var(--r)) translateY(-20px) rotate(10deg); }
+
+100%{ transform:rotate(var(--r)) translateY(-20px) rotate(0deg); }
+
+}
+
+/* LOGO GLOW */
 
 @keyframes pulse{
 
@@ -66,24 +121,28 @@ to{transform:rotate(360deg);}
 
 }
 
-/* header */
+/* HEADER */
 
 .header{
 
 margin-top:15px;
+
 font-size:22px;
+
 letter-spacing:4px;
+
 text-shadow:0 0 10px #b84dff;
 
 }
 
-/* terminal */
+/* TERMINAL */
 
 #terminal{
 
 width:90%;
 max-width:900px;
 height:45vh;
+
 margin:30px auto;
 
 text-align:left;
@@ -98,7 +157,7 @@ box-shadow:0 0 20px #6a00ff;
 
 }
 
-/* command bar */
+/* COMMAND BAR */
 
 .command{
 
@@ -117,27 +176,18 @@ padding:10px;
 input{
 
 width:90%;
-
 background:none;
-
 border:none;
-
 color:#c66bff;
-
 font-family:monospace;
-
 font-size:16px;
-
 outline:none;
 
 }
 
-/* alert */
-
 .alert{
 
 color:#ff5cff;
-
 animation:blink 1s infinite;
 
 }
@@ -156,7 +206,20 @@ animation:blink 1s infinite;
 
 <body>
 
+<div class="logo-container">
+
+<div class="tentacle t1"></div>
+<div class="tentacle t2"></div>
+<div class="tentacle t3"></div>
+<div class="tentacle t4"></div>
+<div class="tentacle t5"></div>
+<div class="tentacle t6"></div>
+<div class="tentacle t7"></div>
+<div class="tentacle t8"></div>
+
 <img src="hydra.png" class="logo">
+
+</div>
 
 <div class="header">
 H.I.D.R.A INTELLIGENCE NETWORK
@@ -236,12 +299,6 @@ terminal.innerHTML += "Scanning Cyber Life network...\nFacility detected: Boston
 else if(value==="locate wesker"){
 
 terminal.innerHTML += "<span class='alert'>ALERT: Albert Wesker signal detected</span>\nLocation: Unknown\nH.I.D.R.A agents deployed"
-
-}
-
-else if(value==="search cyberlife"){
-
-terminal.innerHTML += "Cyber Life laboratories:\n- Boston\n- Zurich\n- Tokyo"
 
 }
 

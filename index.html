@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>H.I.D.R.A Network</title>
+<title>H.I.D.R.A Intelligence Terminal</title>
 
 <style>
 
@@ -33,134 +33,52 @@ background-size:40px 40px;
 z-index:-1;
 }
 
-/* LOGO */
+/* HYDRA LOGO */
 
 .logo{
-width:200px;
-margin-top:30px;
-filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 20px #a64dff);
-animation:pulse 4s infinite;
+width:220px;
+margin-top:40px;
+
+filter:
+hue-rotate(260deg)
+saturate(2)
+drop-shadow(0 0 20px #a64dff);
+
+animation:
+rotate 30s linear infinite,
+pulse 4s ease-in-out infinite,
+glitch 6s infinite;
 }
+
+/* ROTATION */
+
+@keyframes rotate{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
+}
+
+/* PULSE */
 
 @keyframes pulse{
-0%{filter:drop-shadow(0 0 10px #a64dff);}
-50%{filter:drop-shadow(0 0 40px #a64dff);}
-100%{filter:drop-shadow(0 0 10px #a64dff);}
+0%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 15px #a64dff);}
+50%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 40px #a64dff);}
+100%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 15px #a64dff);}
 }
 
-/* EYES */
+/* GLITCH */
 
-.eye{
-position:absolute;
-width:10px;
-height:10px;
-background:#ff4dff;
-border-radius:50%;
-box-shadow:0 0 10px #ff4dff;
-animation:blink 2s infinite;
-}
-
-.eye1{left:49%;top:110px;}
-.eye2{left:52%;top:110px;}
-
-@keyframes blink{
-0%{opacity:1}
-50%{opacity:0.2}
-100%{opacity:1}
-}
-
-/* TENTACLES */
-
-.tentacle{
-position:absolute;
-width:6px;
-height:120px;
-background:linear-gradient(#a64dff,#5e00ff);
-left:50%;
-top:90px;
-transform-origin:top;
-border-radius:10px;
-animation:wave 6s infinite;
-}
-
-.t1{transform:rotate(0deg)}
-.t2{transform:rotate(45deg)}
-.t3{transform:rotate(90deg)}
-.t4{transform:rotate(135deg)}
-.t5{transform:rotate(180deg)}
-.t6{transform:rotate(225deg)}
-.t7{transform:rotate(270deg)}
-.t8{transform:rotate(315deg)}
-
-@keyframes wave{
-0%{transform:rotate(0deg)}
-50%{transform:rotate(10deg)}
-100%{transform:rotate(0deg)}
-}
-
-/* RADAR */
-
-.radar{
-position:fixed;
-right:30px;
-top:30px;
-width:150px;
-height:150px;
-border:2px solid #a64dff;
-border-radius:50%;
-box-shadow:0 0 15px #a64dff;
-}
-
-.radar::after{
-content:"";
-position:absolute;
-width:2px;
-height:75px;
-background:#c66bff;
-left:50%;
-top:50%;
-transform-origin:bottom;
-animation:scan 3s linear infinite;
-}
-
-@keyframes scan{
-from{transform:rotate(0deg)}
-to{transform:rotate(360deg)}
-}
-
-/* MAP */
-
-.map{
-position:fixed;
-left:20px;
-bottom:20px;
-width:200px;
-opacity:0.6;
-filter:drop-shadow(0 0 10px #a64dff);
-}
-
-.dot{
-position:fixed;
-left:95px;
-bottom:75px;
-width:8px;
-height:8px;
-background:red;
-border-radius:50%;
-box-shadow:0 0 10px red;
-animation:pulseDot 1s infinite;
-}
-
-@keyframes pulseDot{
-0%{transform:scale(1)}
-50%{transform:scale(1.5)}
-100%{transform:scale(1)}
+@keyframes glitch{
+0%{transform:translate(0);}
+2%{transform:translate(2px,-2px);}
+4%{transform:translate(-2px,2px);}
+6%{transform:translate(0);}
+100%{transform:translate(0);}
 }
 
 /* HEADER */
 
 .header{
-margin-top:10px;
+margin-top:20px;
 font-size:22px;
 letter-spacing:4px;
 text-shadow:0 0 10px #b84dff;
@@ -171,12 +89,12 @@ text-shadow:0 0 10px #b84dff;
 #terminal{
 width:90%;
 max-width:900px;
-height:40vh;
-margin:20px auto;
+height:45vh;
+margin:30px auto;
+text-align:left;
 border:1px solid #a64dff;
 padding:20px;
 overflow:auto;
-text-align:left;
 box-shadow:0 0 20px #6a00ff;
 }
 
@@ -201,34 +119,29 @@ font-size:16px;
 outline:none;
 }
 
+/* ALERT */
+
+.alert{
+color:#ff5cff;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+0%{opacity:1;}
+50%{opacity:0.3;}
+100%{opacity:1;}
+}
+
 </style>
 
 </head>
 
 <body>
 
-<div class="radar"></div>
-
 <img src="hydra.png" class="logo">
 
-<div class="eye eye1"></div>
-<div class="eye eye2"></div>
-
-<div class="tentacle t1"></div>
-<div class="tentacle t2"></div>
-<div class="tentacle t3"></div>
-<div class="tentacle t4"></div>
-<div class="tentacle t5"></div>
-<div class="tentacle t6"></div>
-<div class="tentacle t7"></div>
-<div class="tentacle t8"></div>
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/800px-World_map_-_low_resolution.svg.png" class="map">
-
-<div class="dot"></div>
-
 <div class="header">
-H.I.D.R.A GLOBAL INTELLIGENCE
+H.I.D.R.A INTELLIGENCE NETWORK
 </div>
 
 <div id="terminal"></div>
@@ -241,80 +154,79 @@ H.I.D.R.A GLOBAL INTELLIGENCE
 
 const terminal = document.getElementById("terminal")
 
-const intro = [
-"> Booting H.I.D.R.A Network...",
-"> Searching target organization...",
-"",
-"CYBER LIFE PHARMACEUTICALS DETECTED",
-"",
-"> Primary Laboratory:",
-"Boston Biotech Facility",
-"",
-"> Experiments located...",
-"",
-"CL-01 John Carter",
-"CL-02 Emily Johnson",
-"CL-03 Michael Thompson",
-"CL-04 Sarah Miller",
-"CL-05 David Anderson",
-"",
-">>> PRIORITY TARGET <<<",
-"",
-"ALBERT WESKER",
-"",
-"> Awaiting command..."
-]
+const intro = `
+> Booting H.I.D.R.A network...
+> Establishing encrypted global connection...
+
+> TARGET DETECTED
+CYBER LIFE PHARMACEUTICALS
+
+> Known facility:
+Boston Biotech Laboratory - Massachusetts
+
+> Accessing experiment database...
+
+CL-01 John Carter
+CL-02 Emily Johnson
+CL-03 Michael Thompson
+CL-04 Sarah Miller
+CL-05 David Anderson
+CL-06 Christopher Walker
+CL-07 Jessica Taylor
+
+>>> PRIORITY TARGET <<<
+
+ALBERT WESKER
+
+> Awaiting command...
+`
 
 let i = 0
 
-function typeLine(){
+function type(){
 
 if(i < intro.length){
 
-terminal.innerHTML += intro[i] + "<br>"
+terminal.innerHTML += intro.charAt(i)
 
 i++
 
-setTimeout(typeLine, 300)
+setTimeout(type,20)
 
 }
 
 }
 
-typeLine()
+type()
 
 const cmd = document.getElementById("cmd")
 
 cmd.addEventListener("keydown",function(e){
 
-if(e.key === "Enter"){
+if(e.key==="Enter"){
 
 const value = cmd.value.toLowerCase()
 
-terminal.innerHTML += "<br>> " + value + "<br>"
+terminal.innerHTML += "\n\n> "+value+"\n"
 
-if(value === "scan"){
-
-terminal.innerHTML += "Scanning Cyber Life network...<br>Location confirmed: Boston<br>"
-
+if(value==="scan"){
+terminal.innerHTML += "Scanning Cyber Life network...\nFacility detected: Boston Biotech Laboratory"
 }
 
-else if(value === "locate wesker"){
-
-terminal.innerHTML += "ALERT: Wesker signal unstable<br>Deploying agents<br>"
-
+else if(value==="locate wesker"){
+terminal.innerHTML += "<span class='alert'>ALERT: Albert Wesker signal detected</span>\nLocation: Unknown\nH.I.D.R.A agents deployed"
 }
 
-else if(value === "hydra"){
+else if(value==="search cyberlife"){
+terminal.innerHTML += "Cyber Life laboratories:\n- Boston\n- Zurich\n- Tokyo"
+}
 
-terminal.innerHTML += "HAIL HYDRA<br>"
-
+else if(value==="hydra"){
+terminal.innerHTML += "HAIL HYDRA"
 }
 
 else{
-
-terminal.innerHTML += "Unknown command<br>"
-
+terminal.innerHTML += "Unknown command"
 }
 
 terminal.scrollTop = terminal.scrollHeight

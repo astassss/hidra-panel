@@ -6,17 +6,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>H.I.D.R.A Intelligence Terminal</title>
+<title>H.I.D.R.A Intelligence System</title>
 
 <style>
 
 body{
 margin:0;
-background:#05010a;
-color:#c66bff;
+background:#040009;
+color:#b84dff;
 font-family:monospace;
-text-align:center;
 overflow:hidden;
+text-align:center;
 }
 
 /* GRID BACKGROUND */
@@ -27,59 +27,44 @@ position:fixed;
 width:100%;
 height:100%;
 background-image:
-linear-gradient(rgba(190,120,255,0.06) 1px, transparent 1px),
-linear-gradient(90deg, rgba(190,120,255,0.06) 1px, transparent 1px);
+linear-gradient(rgba(180,70,255,0.08) 1px, transparent 1px),
+linear-gradient(90deg, rgba(180,70,255,0.08) 1px, transparent 1px);
 background-size:40px 40px;
 z-index:-1;
 }
 
-/* HYDRA LOGO */
+/* LOGO */
 
 .logo{
-width:220px;
-margin-top:40px;
+width:230px;
+margin-top:30px;
 
 filter:
 hue-rotate(260deg)
 saturate(2)
-drop-shadow(0 0 20px #a64dff);
+drop-shadow(0 0 20px #b84dff);
 
 animation:
-rotate 30s linear infinite,
-pulse 4s ease-in-out infinite,
-glitch 6s infinite;
+rotate 35s linear infinite,
+pulse 3s ease-in-out infinite;
 }
-
-/* ROTATION */
 
 @keyframes rotate{
 from{transform:rotate(0deg);}
 to{transform:rotate(360deg);}
 }
 
-/* PULSE */
-
 @keyframes pulse{
-0%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 15px #a64dff);}
-50%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 40px #a64dff);}
-100%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 15px #a64dff);}
-}
-
-/* GLITCH */
-
-@keyframes glitch{
-0%{transform:translate(0);}
-2%{transform:translate(2px,-2px);}
-4%{transform:translate(-2px,2px);}
-6%{transform:translate(0);}
-100%{transform:translate(0);}
+0%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 10px #b84dff);}
+50%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 40px #b84dff);}
+100%{filter:hue-rotate(260deg) saturate(2) drop-shadow(0 0 10px #b84dff);}
 }
 
 /* HEADER */
 
 .header{
-margin-top:20px;
 font-size:22px;
+margin-top:10px;
 letter-spacing:4px;
 text-shadow:0 0 10px #b84dff;
 }
@@ -87,49 +72,78 @@ text-shadow:0 0 10px #b84dff;
 /* TERMINAL */
 
 #terminal{
+
 width:90%;
 max-width:900px;
+
 height:45vh;
-margin:30px auto;
-text-align:left;
-border:1px solid #a64dff;
+
+margin:25px auto;
+
+border:1px solid #b84dff;
+
 padding:20px;
+
+text-align:left;
+
 overflow:auto;
-box-shadow:0 0 20px #6a00ff;
+
+box-shadow:0 0 25px #6a00ff;
+
 }
 
 /* COMMAND BAR */
 
 .command{
+
 position:fixed;
+
 bottom:0;
+
 width:100%;
-background:#05010a;
-border-top:1px solid #a64dff;
+
+border-top:1px solid #b84dff;
+
+background:#040009;
+
 padding:10px;
+
 }
 
 input{
+
 width:90%;
+
 background:none;
+
 border:none;
-color:#c66bff;
+
+color:#b84dff;
+
 font-family:monospace;
+
 font-size:16px;
+
 outline:none;
+
 }
 
 /* ALERT */
 
 .alert{
-color:#ff5cff;
+
+color:#ff4df0;
+
 animation:blink 1s infinite;
+
 }
 
 @keyframes blink{
-0%{opacity:1;}
-50%{opacity:0.3;}
-100%{opacity:1;}
+
+0%{opacity:1}
+50%{opacity:0.3}
+100%{opacity:1}
+
 }
 
 </style>
@@ -147,7 +161,7 @@ H.I.D.R.A INTELLIGENCE NETWORK
 <div id="terminal"></div>
 
 <div class="command">
-> <input id="cmd" placeholder="type command">
+> <input id="cmd" placeholder="enter command">
 </div>
 
 <script>
@@ -155,16 +169,20 @@ H.I.D.R.A INTELLIGENCE NETWORK
 const terminal = document.getElementById("terminal")
 
 const intro = `
-> Booting H.I.D.R.A network...
-> Establishing encrypted global connection...
+> Booting H.I.D.R.A Network...
 
-> TARGET DETECTED
+> Connecting to global surveillance grid...
+
+> Target company detected:
+
 CYBER LIFE PHARMACEUTICALS
 
-> Known facility:
-Boston Biotech Laboratory - Massachusetts
+> Location of main laboratory:
 
-> Accessing experiment database...
+Boston Biotech Laboratory
+Massachusetts, USA
+
+> Downloading experiment database...
 
 CL-01 John Carter
 CL-02 Emily Johnson
@@ -173,6 +191,7 @@ CL-04 Sarah Miller
 CL-05 David Anderson
 CL-06 Christopher Walker
 CL-07 Jessica Taylor
+CL-08 Daniel Moore
 
 >>> PRIORITY TARGET <<<
 
@@ -181,17 +200,17 @@ ALBERT WESKER
 > Awaiting command...
 `
 
-let i = 0
+let i=0
 
 function type(){
 
-if(i < intro.length){
+if(i<intro.length){
 
-terminal.innerHTML += intro.charAt(i)
+terminal.innerHTML+=intro.charAt(i)
 
 i++
 
-setTimeout(type,20)
+setTimeout(type,18)
 
 }
 
@@ -199,37 +218,74 @@ setTimeout(type,20)
 
 type()
 
-const cmd = document.getElementById("cmd")
+const cmd=document.getElementById("cmd")
 
 cmd.addEventListener("keydown",function(e){
 
 if(e.key==="Enter"){
 
-const value = cmd.value.toLowerCase()
+const value=cmd.value.toLowerCase()
 
-terminal.innerHTML += "\n\n> "+value+"\n"
+terminal.innerHTML+="\n\n> "+value+"\n"
 
 if(value==="scan"){
-terminal.innerHTML += "Scanning Cyber Life network...\nFacility detected: Boston Biotech Laboratory"
+
+terminal.innerHTML+="Scanning Cyber Life systems...\nFacility located: Boston Biotech Laboratory"
+
 }
 
 else if(value==="locate wesker"){
-terminal.innerHTML += "<span class='alert'>ALERT: Albert Wesker signal detected</span>\nLocation: Unknown\nH.I.D.R.A agents deployed"
+
+terminal.innerHTML+="<span class='alert'>ALERT: ALBERT WESKER SIGNAL DETECTED</span>\nStatus: Unknown\nDeploying H.I.D.R.A agents"
+
 }
 
-else if(value==="search cyberlife"){
-terminal.innerHTML += "Cyber Life laboratories:\n- Boston\n- Zurich\n- Tokyo"
+else if(value==="experiments"){
+
+terminal.innerHTML+=`
+Experiment Files:
+
+CL-01 John Carter
+CL-02 Emily Johnson
+CL-03 Michael Thompson
+CL-04 Sarah Miller
+CL-05 David Anderson
+CL-06 Christopher Walker
+CL-07 Jessica Taylor
+CL-08 Daniel Moore
+
+CL-11 ALBERT WESKER
+STATUS: CLASSIFIED
+`
+
+}
+
+else if(value==="cyberlife"){
+
+terminal.innerHTML+=`
+Cyber Life facilities detected:
+
+Boston
+Tokyo
+Zurich
+Berlin
+`
+
 }
 
 else if(value==="hydra"){
-terminal.innerHTML += "HAIL HYDRA"
+
+terminal.innerHTML+="HAIL HYDRA"
+
 }
 
 else{
-terminal.innerHTML += "Unknown command"
+
+terminal.innerHTML+="Unknown command"
+
 }
 
-terminal.scrollTop = terminal.scrollHeight
+terminal.scrollTop=terminal.scrollHeight
 
 cmd.value=""
 

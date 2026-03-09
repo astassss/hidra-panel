@@ -6,7 +6,6 @@
 <title>H.I.D.R.A Intelligence Terminal</title>
 
 <style>
-
 body{
 margin:0;
 background:#07030d;
@@ -34,13 +33,12 @@ letter-spacing:2px;
 font-size:18px;
 }
 
-.terminal{
-height:calc(100vh - 60px);
+#terminal{
 padding:20px;
-overflow-y:auto;
-font-size:14px;
+height:calc(100vh - 60px);
+overflow:auto;
+white-space:pre-line;
 }
-
 </style>
 </head>
 
@@ -50,86 +48,64 @@ font-size:14px;
 H.I.D.R.A INTELLIGENCE NETWORK
 </div>
 
-<div id="terminal" class="terminal"></div>
+<div id="terminal"></div>
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function(){
+const text = `
+> Initializing H.I.D.R.A intelligence terminal...
+> Establishing encrypted global network...
 
-const terminal = document.getElementById("terminal");
+> TARGET DETECTED
+> CYBER LIFE PHARMACEUTICALS
 
-const lines = [
+> Known facility:
+> Boston Biotech Laboratory - Massachusetts
 
-"> Initializing H.I.D.R.A intelligence terminal...",
-"> Establishing encrypted global network...",
-"> Accessing surveillance satellites...",
-"",
-"> TARGET DETECTED:",
-"> CYBER LIFE PHARMACEUTICALS",
-"",
-"> Known research facility:",
-"> Boston Biotech Laboratory - Massachusetts",
-"",
-"> Accessing Cyber Life experiment database...",
-"",
-"> Experiment CL-01: JOHN CARTER",
-"> Status: Missing",
-"",
-"> Experiment CL-02: EMILY JOHNSON",
-"> Status: Unknown",
-"",
-"> Experiment CL-03: MICHAEL THOMPSON",
-"> Status: Classified",
-"",
-"> Experiment CL-04: SARAH MILLER",
-"> Status: Containment unstable",
-"",
-"> Experiment CL-05: DAVID ANDERSON",
-"> Status: Active subject",
-"",
-"> HIGH PRIORITY TARGET",
-"",
-"> Experiment CL-11: ALBERT WESKER",
-"> Status: PRIORITY TARGET",
-"",
-"> Searching Cyber Life facilities...",
-"",
-"> Boston Biotech Laboratory located",
-"",
-"> Deploying H.I.D.R.A agents...",
-"",
-"> Warning: Cyber Life attempting counter-trace",
-"",
-"> Masking connection...",
-"",
-"> Disconnecting from network..."
+> Accessing experiment database...
 
-];
+> Experiment CL-01: JOHN CARTER
+Status: Missing
 
-let index = 0;
+> Experiment CL-02: EMILY JOHNSON
+Status: Unknown
 
-function typeLine(){
+> Experiment CL-03: MICHAEL THOMPSON
+Status: Classified
 
-if(index < lines.length){
+> Experiment CL-04: SARAH MILLER
+Status: Containment unstable
 
-const line = document.createElement("div");
-line.textContent = lines[index];
+> Experiment CL-05: DAVID ANDERSON
+Status: Active subject
 
-terminal.appendChild(line);
+> HIGH PRIORITY TARGET
 
-terminal.scrollTop = terminal.scrollHeight;
+> Experiment CL-11: ALBERT WESKER
+Status: PRIORITY TARGET
 
-index++;
+> Searching Cyber Life facilities...
+> Boston Biotech Laboratory located
 
-setTimeout(typeLine,350);
+> Deploying H.I.D.R.A agents...
 
+> Warning: Cyber Life security trace detected
+
+> Disconnecting...
+`;
+
+let i = 0;
+const speed = 25;
+
+function typeWriter(){
+if(i < text.length){
+document.getElementById("terminal").innerHTML += text.charAt(i);
+i++;
+setTimeout(typeWriter, speed);
+}
 }
 
-}
-
-typeLine();
-
-});
+typeWriter();
 
 </script>
 
